@@ -189,7 +189,7 @@ import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useHelper } from "@/utils/useHelper";
-import CityCountyData from "@/assets/json/CityCountyData";
+import CityCountyData from "@/assets/json/CityCountyData.json";
 type Area = {
   ZipCode: string;
   AreaName: string;
@@ -216,6 +216,7 @@ type SignupInfo = {
 };
 
 const { getImageUrl } = useHelper();
+//const cityCountyDatas: City[] = CityCountyData as City[];
 const router = useRouter();
 let currStep = ref<number>(1);
 const areaList = ref<Area[]>([]);
@@ -321,10 +322,12 @@ function validate2() {
 }
 
 const setAreaList = () => {
-  const currCity: City = CityCountyData.find((item: City) => item.CityName === cityName.value);
-  if (currCity) areaList.value = currCity.AreaList;
-  zipcodeStr.value = areaList.value[0].ZipCode;
-  countyName.value = areaList.value[0].AreaName;
+  const currCity: City | undefined = CityCountyData.find((item: City) => item.CityName === cityName.value);
+  if (currCity) {
+    areaList.value = currCity.AreaList;
+    zipcodeStr.value = areaList.value[0].ZipCode;
+    countyName.value = areaList.value[0].AreaName;
+  }
 };
 
 const submitSignup = () => {
@@ -337,9 +340,9 @@ const submitSignup = () => {
     address: {
       zipcode: Number(zipcodeStr.value) || 0,
       county:
-        CityCountyData.find((item: City) => item.CityName === cityName.value).AreaList.find(
+        CityCountyData.find((item: City) => item.CityName === cityName.value)?.AreaList.find(
           (item: Area) => item.ZipCode === zipcodeStr.value
-        ).AreaName || "",
+        )?.AreaName ?? "",
       city: cityName.value,
       detail: addressDetail.value,
     },

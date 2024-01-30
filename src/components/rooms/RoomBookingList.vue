@@ -9,18 +9,8 @@
       {{ roomInfo.description }}
     </p>
     <div class="tw-flex tw-gap-4">
-      <v-text-field
-        @click="toggleDatePicker"
-        label="入住"
-        readonly
-        variant="outlined"
-      ></v-text-field>
-      <v-text-field
-        @click="toggleDatePicker"
-        label="退房"
-        readonly
-        variant="outlined"
-      ></v-text-field>
+      <v-text-field @click="toggleDatePicker" label="入住" readonly variant="outlined"></v-text-field>
+      <v-text-field @click="toggleDatePicker" label="退房" readonly variant="outlined"></v-text-field>
     </div>
     <!-- <v-date-picker
       v-if="!!datePicker"
@@ -50,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import BtnNormal from "../BtnNormal.vue";
+//import BtnNormal from "../BtnNormal.vue";
 
 defineProps({
   roomInfo: {
