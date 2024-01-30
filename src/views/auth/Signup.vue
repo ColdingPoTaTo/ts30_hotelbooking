@@ -189,7 +189,7 @@ import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useHelper } from "@/utils/useHelper";
-import CityCountyData from "@/assets/json/CityCountyData.json";
+import { CityCountyData } from "@/utils/CityCountyData"; //import CityCountyData from "@/assets/json/CityCountyData.json"; // import CityCountyData from "/public/json/CityCountyData";
 type Area = {
   ZipCode: string;
   AreaName: string;
