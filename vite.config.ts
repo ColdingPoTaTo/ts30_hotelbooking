@@ -5,7 +5,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  //base:'/ts30_hotelbooking/',
+  base: process.env.VITE_BASE_PATH || "/",
   plugins: [vue()],
   resolve: {
     alias: {
